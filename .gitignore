@@ -1,0 +1,72 @@
+# Dependencies
+node_modules/
+package-lock.json
+
+# Environment Variables
+.env
+.env.local
+.env.production
+backend/.env
+backend/.env.local
+backend/.env.production
+
+# Database
+*.db
+*.sqlite
+*.sqlite3
+data.json
+backend/data.json
+
+# Uploads
+backend/public/uploads/*
+!backend/public/uploads/.gitkeep
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+lerna-debug.log*
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# IDEs
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Vercel
+.vercel
+.vercel.json
+
+# Build
+dist/
+build/
+out/
+
+# Temporary files
+*.tmp
+*.temp
+.cache/
+
+# Test coverage
+coverage/
+
+# Supabase local
+.supabase/
+
+# Scripts temporários
+*.ps1
+*.sh
+!UPDATE_API_URLS.ps1
+
+# Documentação temporária
+RESUMO_*.txt
+TESTE_*.md
+ANALISE_*.md

@@ -1,0 +1,22 @@
+# Dependencies
+node_modules/
+
+# Environment
+.env
+.env.*
+!.env.example
+
+# Database
+data.json
+*.db
+
+# Uploads (Vercel filesystem is read-only)
+public/uploads/*
+!public/uploads/.gitkeep
+
+# Logs
+*.log
+
+# Testing
+*.test.js
+test-*.js

@@ -1,0 +1,116 @@
+============================================
+VARIÁVEIS DE AMBIENTE PARA VERCEL (PRODUÇÃO)
+============================================
+
+Cole estas variáveis no Vercel Dashboard:
+Settings → Environment Variables
+
+Para cada variável, clique em "Add" e preencha:
+
+
+1️⃣ SUPABASE_URL
+   Value: https://zrwxxnyygtesucsumzpg.supabase.co
+   Environment: Production
+
+
+2️⃣ SUPABASE_ANON_KEY
+   Value: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inpyd3h4bnl5Z3Rlc3Vjc3VtenBnIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTkxNjUwNDEsImV4cCI6MjA3NDc0MTA0MX0.nVmomxqSLSbHamUSFWIQ3W1DfefCAYCBssGhBv63LBQ
+   Environment: Production
+
+
+3️⃣ SUPABASE_SERVICE_KEY
+   Value: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inpyd3h4bnl5Z3Rlc3Vjc3VtenBnIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTkxNjUwNDEsImV4cCI6MjA3NDc0MTA0MX0.nVmomxqSLSbHamUSFWIQ3W1DfefCAYCBssGhBv63LBQ
+   Environment: Production
+
+
+4️⃣ JWT_SECRET
+   Value: ubatuba_reage_2025_super_secret_key_production
+   Environment: Production
+   ⚠️ IMPORTANTE: Trocar por um valor mais seguro em produção!
+
+
+5️⃣ ADMIN_EMAIL
+   Value: admin@ubatubareage.com.br
+   Environment: Production
+
+
+6️⃣ ADMIN_PASSWORD
+   Value: admin123
+   Environment: Production
+   ⚠️ IMPORTANTE: Trocar por uma senha forte em produção!
+
+
+7️⃣ NODE_ENV
+   Value: production
+   Environment: Production
+
+
+============================================
+VIA CLI (ALTERNATIVA)
+============================================
+
+Ou adicione via terminal:
+
+vercel env add SUPABASE_URL production
+# Cole quando pedir: https://zrwxxnyygtesucsumzpg.supabase.co
+
+vercel env add SUPABASE_ANON_KEY production
+# Cole a key acima
+
+vercel env add SUPABASE_SERVICE_KEY production
+# Cole a key acima
+
+vercel env add JWT_SECRET production
+# Cole: ubatuba_reage_2025_super_secret_key_production
+
+vercel env add ADMIN_EMAIL production
+# Cole: admin@ubatubareage.com.br
+
+vercel env add ADMIN_PASSWORD production
+# Cole: admin123
+
+vercel env add NODE_ENV production
+# Cole: production
+
+
+============================================
+APÓS ADICIONAR
+============================================
+
+Faça redeploy para aplicar as variáveis:
+
+cd backend
+vercel --prod
+
+
+============================================
+SEGURANÇA EM PRODUÇÃO
+============================================
+
+🔐 RECOMENDAÇÕES:
+
+1. JWT_SECRET
+   Gerar um novo com:
+   node -e "console.log(require('crypto').randomBytes(64).toString('hex'))"
+
+2. ADMIN_PASSWORD
+   Trocar para uma senha forte:
+   Mínimo 12 caracteres, com letras, números e símbolos
+
+3. SUPABASE_SERVICE_KEY
+   Use a Service Role Key (não a anon key)
+   Encontre em: Supabase → Settings → API → service_role
+
+
+============================================
+TESTE APÓS DEPLOY
+============================================
+
+curl https://sua-url.vercel.app/api/health
+
+Deve retornar:
+{
+  "success": true,
+  "message": "API funcionando!",
+  "version": "1.0.0"
+}

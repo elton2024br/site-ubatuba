@@ -1,0 +1,359 @@
+/* Ubatuba Reage - Responsive Enhancements */
+
+/* Enhanced focus styles for keyboard navigation */
+.keyboard-navigation *:focus {
+    outline: 2px solid #0ea5e9 !important;
+    outline-offset: 2px;
+}
+
+/* Screen reader only content */
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+.focus\:not-sr-only:focus {
+    position: static;
+    width: auto;
+    height: auto;
+    padding: 0.5rem 1rem;
+    margin: 0;
+    overflow: visible;
+    clip: auto;
+    white-space: normal;
+}
+
+/* Mobile-first responsive adjustments */
+@media (max-width: 640px) {
+    .container {
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
+    
+    /* Header adjustments */
+    header .text-2xl {
+        font-size: 1.5rem;
+    }
+    
+    /* Hero section mobile */
+    .hero-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+    
+    /* Article cards mobile */
+    .article-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+    
+    /* Newsletter mobile */
+    .newsletter-form {
+        flex-direction: column;
+        gap: 1rem;
+    }
+    
+    /* Footer mobile */
+    .footer-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+        text-align: center;
+    }
+}
+
+@media (min-width: 641px) and (max-width: 768px) {
+    /* Tablet adjustments */
+    .article-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .hero-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+    /* Small desktop adjustments */
+    .container {
+        max-width: 1000px;
+    }
+    
+    .article-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+    .bg-black {
+        background-color: #000 !important;
+    }
+    
+    .text-white {
+        color: #fff !important;
+    }
+    
+    .text-gray-300 {
+        color: #ccc !important;
+    }
+    
+    .border-gray-800 {
+        border-color: #555 !important;
+    }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+    
+    .article-hover {
+        transform: none !important;
+    }
+    
+    .mobile-menu {
+        transition: none !important;
+    }
+}
+
+/* Print styles */
+@media print {
+    * {
+        color: black !important;
+        background: white !important;
+    }
+    
+    .gradient-bg,
+    .bg-black,
+    .bg-intercept-gray {
+        background: white !important;
+    }
+    
+    .text-white,
+    .text-gray-300,
+    .text-gray-400 {
+        color: black !important;
+    }
+    
+    header,
+    footer,
+    .mobile-menu,
+    button,
+    input {
+        display: none !important;
+    }
+    
+    main {
+        margin: 0 !important;
+        padding: 0 !important;
+    }
+    
+    article {
+        break-inside: avoid;
+        margin-bottom: 2rem;
+        border: 1px solid #ccc !important;
+        padding: 1rem !important;
+    }
+}
+
+/* Dark mode enhancements (already dark by default) */
+@media (prefers-color-scheme: light) {
+    /* Option to provide light mode variant in the future */
+    .light-mode-toggle {
+        display: block;
+    }
+}
+
+/* Loading states */
+.loading {
+    position: relative;
+    overflow: hidden;
+}
+
+.loading::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(14, 165, 233, 0.2),
+        transparent
+    );
+    animation: loading 1.5s infinite;
+}
+
+@keyframes loading {
+    0% {
+        left: -100%;
+    }
+    100% {
+        left: 100%;
+    }
+}
+
+/* Enhanced mobile menu */
+.mobile-menu {
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+}
+
+@supports not (backdrop-filter: blur(10px)) {
+    .mobile-menu {
+        background-color: rgba(26, 26, 26, 0.95);
+    }
+}
+
+/* Article hover effects enhancement */
+.article-hover {
+    will-change: transform, box-shadow;
+}
+
+/* Sticky header enhancement */
+.sticky-header {
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+}
+
+@supports not (backdrop-filter: blur(20px)) {
+    .sticky-header {
+        background-color: rgba(26, 26, 26, 0.95);
+    }
+}
+
+/* Search input enhancements */
+.search-input:focus {
+    background: rgba(255, 255, 255, 0.15);
+    border-color: #0ea5e9;
+}
+
+/* Newsletter form enhancements */
+.newsletter-input {
+    transition: all 0.3s ease;
+}
+
+.newsletter-input:focus {
+    transform: scale(1.02);
+    border-color: #0ea5e9;
+}
+
+/* Notification animations */
+@keyframes slideInRight {
+    from {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes slideOutRight {
+    from {
+        transform: translateX(0);
+        opacity: 1;
+    }
+    to {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+}
+
+.notification {
+    animation: slideInRight 0.3s ease-out;
+}
+
+.notification.removing {
+    animation: slideOutRight 0.3s ease-in;
+}
+
+/* Reading progress bar */
+.reading-progress {
+    transition: width 0.1s ease-out;
+}
+
+/* Enhanced typography */
+.article-title {
+    line-height: 1.2;
+    font-weight: 700;
+}
+
+.article-excerpt {
+    line-height: 1.6;
+}
+
+/* Loading spinner */
+.spinner {
+    width: 20px;
+    height: 20px;
+    border: 2px solid rgba(14, 165, 233, 0.3);
+    border-radius: 50%;
+    border-top-color: #0ea5e9;
+    animation: spin 1s ease-in-out infinite;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* Grid layout improvements */
+.article-grid {
+    display: grid;
+    gap: 2rem;
+}
+
+@media (min-width: 768px) {
+    .article-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (min-width: 1024px) {
+    .article-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+/* Improved focus indicators */
+a:focus,
+button:focus,
+input:focus,
+[tabindex]:focus {
+    outline: 2px solid #0ea5e9;
+    outline-offset: 2px;
+}
+
+/* Skip to content link positioning */
+.skip-link {
+    position: absolute;
+    top: -40px;
+    left: 6px;
+    background: #0ea5e9;
+    color: #fff;
+    padding: 8px;
+    text-decoration: none;
+    border-radius: 0 0 4px 4px;
+    z-index: 1000;
+    transition: top 0.3s;
+}
+
+.skip-link:focus {
+    top: 0;
+}
