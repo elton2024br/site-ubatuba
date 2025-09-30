@@ -4,7 +4,7 @@ class NoticiaSupabase {
     // Listar todas as notícias (com filtros)
     static async findAll(filters = {}) {
         let query = supabase
-            .from('noticias_completas')
+            .from('noticias')
             .select('*')
             .order('created_at', { ascending: false });
 
@@ -40,7 +40,7 @@ class NoticiaSupabase {
     // Buscar por slug
     static async findBySlug(slug) {
         const { data, error } = await supabase
-            .from('noticias_completas')
+            .from('noticias')
             .select('*')
             .eq('slug', slug)
             .single();
@@ -52,7 +52,7 @@ class NoticiaSupabase {
     // Buscar por ID
     static async findById(id) {
         const { data, error } = await supabase
-            .from('noticias_completas')
+            .from('noticias')
             .select('*')
             .eq('id', id)
             .single();
