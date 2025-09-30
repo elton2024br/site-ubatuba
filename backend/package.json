@@ -1,7 +1,7 @@
 {
-  "name": "ubatuba-reage-backend",
+  "name": "site-ubatuba-backend",
   "version": "1.0.0",
-  "description": "Backend completo para o portal Ubatuba Reage",
+  "description": "Backend completo para o portal Site Ubatuba",
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
@@ -15,7 +15,7 @@
     "cms",
     "api"
   ],
-  "author": "Ubatuba Reage",
+  "author": "Site Ubatuba",
   "license": "MIT",
   "dependencies": {
     "@supabase/supabase-js": "^2.58.0",
@@ -30,7 +30,7 @@
     "jsonwebtoken": "^9.0.2",
     "marked": "^11.1.1",
     "morgan": "^1.10.0",
-    "multer": "^1.4.5-lts.1",
+    "multer": "^2.0.0",
     "sanitize-html": "^2.11.0",
     "slugify": "^1.6.6"
   },
@@ -38,6 +38,6 @@
     "nodemon": "^3.0.2"
   },
   "engines": {
-    "node": ">=16.0.0"
+    "node": ">=18.0.0 <23.0.0"
   }
 }

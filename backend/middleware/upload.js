@@ -18,7 +18,8 @@ const fileFilter = (req, file, cb) => {
     if (config.ALLOWED_FILE_TYPES.includes(file.mimetype)) {
         cb(null, true);
     } else {
-        cb(new Error('Tipo de arquivo não permitido. Apenas imagens JPEG, PNG, WebP e GIF.'), false);
+        // Multer 2.x usa MulterError para erros customizados
+        cb(new multer.MulterError('LIMIT_UNEXPECTED_FILE', 'type'), false);
     }
 };
 
