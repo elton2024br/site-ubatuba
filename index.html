@@ -126,12 +126,15 @@
                 </div>
                 
                 <!-- Desktop Navigation -->
-                <nav class="hidden md:flex space-x-8">
+                <nav class="hidden md:flex space-x-8 items-center">
                     <a href="#" class="nav-link text-white hover:text-ubatuba-blue font-medium">CIDADE</a>
                     <a href="#" class="nav-link text-white hover:text-ubatuba-blue font-medium">TURISMO</a>
                     <a href="#" class="nav-link text-white hover:text-ubatuba-blue font-medium">MEIO AMBIENTE</a>
                     <a href="#" class="nav-link text-white hover:text-ubatuba-blue font-medium">CULTURA</a>
                     <a href="#" class="nav-link text-white hover:text-ubatuba-blue font-medium">PRAIAS</a>
+                    <a href="admin/login.html" class="nav-link text-ubatuba-blue hover:text-white font-medium flex items-center" title="Área Administrativa">
+                        <i class="fas fa-lock mr-2"></i>LOGIN
+                    </a>
                 </nav>
                 
                 <!-- Search and Mobile Menu -->
@@ -166,6 +169,16 @@
                     <a href="#" class="block text-white hover:text-ubatuba-blue font-medium py-2">MEIO AMBIENTE</a>
                     <a href="#" class="block text-white hover:text-ubatuba-blue font-medium py-2">CULTURA</a>
                     <a href="#" class="block text-white hover:text-ubatuba-blue font-medium py-2">PRAIAS</a>
+                    
+                    <!-- Admin Login -->
+                    <div class="mt-6 pt-4 border-t border-gray-700">
+                        <a href="admin/login.html" class="flex items-center text-ubatuba-blue hover:text-white font-semibold py-3 px-4 bg-ubatuba-dark rounded-lg transition-all hover:bg-ubatuba-blue" title="Painel Administrativo">
+                            <i class="fas fa-lock mr-3"></i>
+                            <span>ÁREA ADMIN</span>
+                            <i class="fas fa-arrow-right ml-auto"></i>
+                        </a>
+                    </div>
+                    
                     <div class="mt-6 pt-4 border-t border-gray-700">
                         <input type="text" 
                                placeholder="Buscar..." 
