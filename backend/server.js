@@ -51,6 +51,35 @@ app.get('/api/health', (req, res) => {
     });
 });
 
+// Rota de teste para debugging do login
+app.post('/api/test-login', (req, res) => {
+    console.log('🧪 Teste de login recebido');
+    console.log('   Headers:', req.headers);
+    console.log('   Body:', req.body);
+    console.log('   Content-Type:', req.get('Content-Type'));
+    
+    try {
+        const { email, senha } = req.body;
+        
+        res.json({
+            success: true,
+            message: 'Teste de login OK',
+            received: {
+                email: email || 'undefined',
+                senha: senha ? '***' : 'undefined',
+                bodyType: typeof req.body,
+                bodyKeys: Object.keys(req.body || {})
+            }
+        });
+    } catch (error) {
+        console.error('Erro no teste:', error);
+        res.status(500).json({
+            success: false,
+            error: error.message
+        });
+    }
+});
+
 // Rota 404
 app.use((req, res) => {
     res.status(404).json({

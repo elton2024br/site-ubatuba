@@ -33,6 +33,10 @@ document.getElementById('login-form')?.addEventListener('submit', async function
     errorMessage.classList.add('hidden');
     
     try {
+        console.log('🔐 Enviando requisição de login para:', `${API_URL}/auth/login`);
+        console.log('📧 Email:', email);
+        console.log('📦 Payload:', { email, senha: '***' });
+
         const response = await fetch(`${API_URL}/auth/login`, {
             method: 'POST',
             headers: {
@@ -41,9 +45,22 @@ document.getElementById('login-form')?.addEventListener('submit', async function
             body: JSON.stringify({ email, senha: password })
         });
         
-        const data = await response.json();
+        console.log('📡 Response status:', response.status, response.statusText);
+
+        // Verificar se a resposta é JSON válida
+        let data;
+        try {
+            data = await response.json();
+            console.log('📄 Response data:', data);
+        } catch (jsonError) {
+            console.error('❌ Erro ao parsear JSON:', jsonError);
+            console.log('📄 Response text:', await response.text());
+            throw new Error('Resposta inválida do servidor');
+        }
         
-        if (data.success) {
+        if (response.ok && data.success) {
+            console.log('✅ Login bem-sucedido!');
+            
             // Salvar token
             localStorage.setItem('admin_token', data.data.token);
             localStorage.setItem('admin_user', JSON.stringify(data.data.user));
@@ -62,10 +79,24 @@ document.getElementById('login-form')?.addEventListener('submit', async function
                 window.location.href = 'dashboard.html';
             }, 1000);
         } else {
-            throw new Error(data.message || 'Erro ao fazer login');
+            console.error('❌ Login falhou:', data);
+            
+            // Diferentes mensagens baseadas no status
+            let errorMessage = 'Erro ao fazer login';
+            
+            if (response.status === 400) {
+                errorMessage = data.message || 'Dados inválidos';
+            } else if (response.status === 401) {
+                errorMessage = data.message || 'Email ou senha incorretos';
+            } else if (response.status === 500) {
+                errorMessage = data.message || 'Erro interno do servidor';
+                console.error('💥 Erro 500 details:', data.error);
+            }
+            
+            throw new Error(errorMessage);
         }
     } catch (error) {
-        console.error('Erro no login:', error);
+        console.error('💥 Erro no login:', error);
         
         // Mostrar erro
         document.getElementById('error-text').textContent = error.message || 'Email ou senha incorretos';

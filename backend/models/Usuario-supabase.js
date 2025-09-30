@@ -1,4 +1,5 @@
 const { supabase } = require('../config/supabase');
+const bcrypt = require('bcryptjs');
 
 class UsuarioSupabase {
     // Listar todos os usuários
@@ -86,6 +87,27 @@ class UsuarioSupabase {
 
         if (error) throw error;
         return true;
+    }
+
+    // Verificar senha (bcrypt)
+    static async verifyPassword(plainPassword, hashedPassword) {
+        try {
+            return await bcrypt.compare(plainPassword, hashedPassword);
+        } catch (error) {
+            console.error('Erro ao verificar senha:', error);
+            throw new Error('Erro na verificação da senha');
+        }
+    }
+
+    // Hash da senha (para criação/atualização)
+    static async hashPassword(plainPassword) {
+        try {
+            const saltRounds = 10;
+            return await bcrypt.hash(plainPassword, saltRounds);
+        } catch (error) {
+            console.error('Erro ao hashear senha:', error);
+            throw new Error('Erro ao processar senha');
+        }
     }
 }
 

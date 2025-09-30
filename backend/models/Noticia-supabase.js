@@ -82,7 +82,9 @@ class NoticiaSupabase {
             .single();
 
         if (error) throw error;
-        return await this.findById(data.id);
+        
+        // Retornar dados diretamente sem usar view (que pode não existir)
+        return data;
     }
 
     // Atualizar notícia
@@ -105,13 +107,17 @@ class NoticiaSupabase {
             }
         }
 
-        const { error } = await supabase
+        const { data, error } = await supabase
             .from('noticias')
             .update(updateData)
-            .eq('id', id);
+            .eq('id', id)
+            .select()
+            .single();
 
         if (error) throw error;
-        return await this.findById(id);
+        
+        // Retornar dados diretamente
+        return data;
     }
 
     // Deletar notícia
